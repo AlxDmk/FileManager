@@ -14,11 +14,13 @@ namespace FileManager
         public static void SeperateCommandLine(string command)
 
         {
-            CommandMethod = command.Split(" ").First();
-            
-            CommandBody= command.Split(" ").ElementAt(1);
-            Console.WriteLine(CommandMethod);
-            Console.WriteLine(CommandBody);
+            string[] sep = command.Split(null, 2);
+            CommandMethod = sep[0];
+
+            if (sep.Length>1)
+            {
+                CommandBody = sep[1];
+            }
 
             SwitchTheCommand();
         }
@@ -32,7 +34,9 @@ namespace FileManager
                 case "change" :
                     Functions.ChangeDirectory.ChangeDirectoryMethod(CommandBody);
                     break;
-
+                case "page":
+                    Pagination.MovePage(CommandBody);
+                    break;
                 default:
                     break;
             }

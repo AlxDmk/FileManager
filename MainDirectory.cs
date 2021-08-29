@@ -10,72 +10,52 @@ namespace FileManager
 {
     class MainDirectory
     {
-        static string Root;
-        static DirectoryInfo mainRoot ;
-        static DirectoryInfo[]  RootArray ;
-        static FileInfo[] RootFilesArra;
-
-        public MainDirectory(string root)
-        {
-            Root = root;
-            mainRoot = new DirectoryInfo(Root);
-            RootArray = mainRoot.GetDirectories();
-            
-
-        }
-
+        public static StringBuilder DirectoriesArray = new();
         
         
 
        public static void  SetDirectory(string root)
         {
-           
+
+            DirectoriesArray.Clear();
+            DirectoryInfo mainRoot = new(root);
+            LastRoot.SaveRoot(root);
+            int i = 0;
+            DirectoriesArray.Append(root + ',');
+            RecordRootToString(mainRoot, i);
+
+            
+
+        }
+
+        private static void RecordRootToString(DirectoryInfo root, int i)
+        {
+            string row = ">";
+            i++;
+            if (i ==3)
+            {
+                return;
+            }
+
             try
             {
-                
-                Root = root;
-                mainRoot = new DirectoryInfo(Root);
-               
-                RootArray = mainRoot.GetDirectories();
-                LastRoot.SaveRoot(root);
-
-                RootFilesArra = mainRoot.GetFiles();
-                PrintRoot();
-                               
-
+                foreach (DirectoryInfo dir in root.GetDirectories())
+                {
+                    DirectoriesArray.Append(row.PadLeft(i, '-') + dir.Name + ',');
+                    RecordRootToString(dir, i);
+                }
             }
-            catch (Exception ex)
+            catch { }
+            try
             {
-                Console.WriteLine("Такой директории не существует");
-                Console.ReadKey();
+                foreach (FileInfo fl in root.GetFiles())
+                {
+                    DirectoriesArray.Append(row.PadLeft(i, '-') + fl.Name + ',');
+                }
             }
+            catch { }
             
-            
-
-        }
-
-        public static  void PrintRoot()
-        {
-            Console.Clear();
-            Console.WriteLine(mainRoot.FullName);
-           
-            foreach(DirectoryInfo r in RootArray)
-            {
-                Console.WriteLine("-->  "+r.Name);
-
-            }
-            foreach(FileInfo f in RootFilesArra)
-            {
-                Console.WriteLine("-->  "+f.Name);
-            }
-
-
-            Console.WriteLine();
-            Console.WriteLine("*************************");
-            Console.WriteLine(mainRoot.Name);
-            Console.WriteLine(mainRoot.FullName);
-            
-        }
+        }      
 
 
     }

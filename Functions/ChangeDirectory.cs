@@ -15,6 +15,7 @@ namespace FileManager.Functions
             //string newDirectory = Console.ReadLine();
 
             MainDirectory.SetDirectory(newDirectory);
+            Pagination.PrintPaginatedRoot(MainDirectory.DirectoriesArray.ToString());
 
 
         }
