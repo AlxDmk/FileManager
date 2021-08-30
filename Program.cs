@@ -6,35 +6,43 @@ namespace FileManager
 {
     class Program
     {
-
+        public static string LAST_DIR ;
         static string  Command;
-       
+        public static int  FooterArea;
+        public static int InfoArea = (int)Math.Truncate(Console.WindowHeight * 0.67);
+
         static void Main(string[] args)
         {
-
-            Start();
-            Continue();
-
-            
+            Start();          
         }
 
         static public void Start()
         {
-            
+                       
             MainDirectory.SetDirectory(LastRoot.LoadRoot());
-            Pagination.PrintPaginatedRoot(MainDirectory.DirectoriesArray.ToString());
-            
-            
-
+            LAST_DIR = LastRoot.LoadRoot();
+            Pagination.PrintPaginatedRoot(MainDirectory.DirectoriesArray.ToString());          
+        
         }
-        static void Continue()
+        public static void Continue()
         {
-            string lastDir = (LastRoot.LoadRoot());
+            
             do
-            {
-                Console.Write(lastDir + '>');
+            {              
+                
+                FooterArea = (int)Math.Truncate(Console.WindowHeight * 0.95); // Командная строк
+                Console.SetCursorPosition (0, FooterArea);
+                for (int i = 1; i < Console.WindowWidth; i++)
+                {
+                    Console.Write('_');
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+                LAST_DIR = (LastRoot.LoadRoot());
+                Console.Write(LAST_DIR + '>');
                 Command = Console.ReadLine();
                 HubOfCommands.SeperateCommandLine(Command);
+               
             }
 
             while (Command != "exit");

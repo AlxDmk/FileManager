@@ -11,20 +11,20 @@ namespace FileManager
     class MainDirectory
     {
         public static StringBuilder DirectoriesArray = new();
-        
+        public static DirectoryInfo mainRoot;
+        public static string ROOT;
         
 
        public static void  SetDirectory(string root)
         {
-
+            ROOT = root;
             DirectoriesArray.Clear();
-            DirectoryInfo mainRoot = new(root);
+            mainRoot = new(root);
+            Pagination.ROOT = root;
             LastRoot.SaveRoot(root);
             int i = 0;
             DirectoriesArray.Append(root + ',');
-            RecordRootToString(mainRoot, i);
-
-            
+            RecordRootToString(mainRoot, i);            
 
         }
 

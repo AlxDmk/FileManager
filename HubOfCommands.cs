@@ -31,12 +31,32 @@ namespace FileManager
             {
                 case "exit":
                     break;
-                case "change" :
+                case "cd" :
                     Functions.ChangeDirectory.ChangeDirectoryMethod(CommandBody);
                     break;
-                case "page":
-                    Pagination.MovePage(CommandBody);
+                case "nav":
+                    Program.Start();
                     break;
+                case "file":
+                    Functions.FileInformation.InfoForFileSet(CommandBody);
+                    Program.Start();
+                    break;
+                case "del":
+                    if (CommandBody!=null)
+                    {
+                        Functions.Delete.DeleteSubDir(CommandBody);
+                    }
+                    else
+                    {
+                        Functions.Delete.DeleteSelf();
+                    }
+                    Program.Start();
+                    break;
+                case "copy":
+                    Functions.Copy.Accept(CommandBody);
+                    Program.Start();
+                    break;
+
                 default:
                     break;
             }
