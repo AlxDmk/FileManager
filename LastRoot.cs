@@ -10,6 +10,8 @@ namespace FileManager
 {
    public static class LastRoot
     {
+        /*  Класс отвечает за Загрузку и Запись последнего состояния командной строки из/в файл root.txt
+         */
         static string lastRoot = "lastRoot.txt";
         public static string LastDir;
 

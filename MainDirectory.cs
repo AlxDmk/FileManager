@@ -10,6 +10,12 @@ namespace FileManager
 {
     class MainDirectory
     {
+        /*  Класс отвечает за:
+         *  1. Вызов последней сохраненной директории (при открытии)
+         *  2. Установки текущей директории в качестве послденей - передача информации для записи в root.txt
+         *  3. Формирование StringBuilder текущей директории с вложенностью и передачи его в качестве строки в класс Paginate для вывода на консоль   
+         */
+
         public static StringBuilder DirectoriesArray = new();
         public static DirectoryInfo mainRoot;
         public static string ROOT;
@@ -32,7 +38,7 @@ namespace FileManager
         {
             string row = ">";
             i++;
-            if (i ==3)
+            if (i ==3)                                                              // Указывается уровено вложенности
             {
                 return;
             }

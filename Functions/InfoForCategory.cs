@@ -9,6 +9,10 @@ namespace FileManager
 {
     class InfoForCategory
     {
+
+        /*Класс методом рекурсии собирает данные для Информационного раздела : Количество подкаталогов и файлов, Примерный размер текущей директории */
+
+
         public static long MEMORY_SIZE;
         public static int COUNT_OF_DIRS;
         public static int COUNT_OF_FILES;

@@ -27,12 +27,9 @@ namespace FileManager.Functions
                 Console.WriteLine($"Директории {Root} не существует");
                 Console.ReadKey();
                 Program.Start();
-            }
-            
+            }           
 
-        }
-
-        
+        }       
                 
     }
 }

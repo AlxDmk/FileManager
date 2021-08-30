@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Collections.Specialized;
+
 
 namespace FileManager
 {
     public static class Pagination
     {
-        static int CountRecordsPerPage = (int)Math.Truncate(Console.WindowHeight*0.66-4);
+        //static int CountRecordsPerPage =  Convert.ToInt32 (ConfigurationManager.AppSettings["records"]);  // Запрос к app.config реализовал, но он криво отрабатывается, когда остальные
+        static int CountRecordsPerPage = (int)Math.Truncate(Console.WindowHeight*0.66-4);                   // когда области определяются динамически : идет накладка областей                    
         static string ArrayString;
         static string[] Array;
        

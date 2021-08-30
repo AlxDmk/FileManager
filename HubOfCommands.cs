@@ -8,6 +8,9 @@ namespace FileManager
 {
     public static class HubOfCommands
     {
+        /* Класс получает команду с командной строки, пытается преобразовать в массив (выделить первое слово в строке - CommandMethod и остаток массива - CommandBody).
+         * В зависимости от значения CommandMethod запускает определенные методы соответствующих классов.         
+         */
 
         static string CommandMethod;
         static string CommandBody;
